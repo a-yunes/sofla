@@ -1,0 +1,77 @@
+name: Native checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-core-tests:
+    runs-on: xcode-27
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Lint, test core, and compile native app
+        run: ./scripts/check.sh
+      - name: Native regressions
+        run: ./scripts/test-native-regressions.py
+      - name: Source privacy audit
+        run: python3 scripts/audit-source.py
+
+      - name: Build the distributable runtime
+        run: |
+          ./scripts/build-app.sh
+          ditto -c -k --keepParent build/Sofla.app build/Sofla-runtime.zip
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-runtime
+          path: build/Sofla-runtime.zip
+          retention-days: 5
+          if-no-files-found: error
+
+  macos-26-runtime:
+    needs: build-and-core-tests
+    runs-on: macos-26
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: native-runtime
+          path: build
+      - name: Exercise the packaged app on macOS 26
+        run: |
+          ditto -x -k build/Sofla-runtime.zip build
+          codesign --verify --deep --strict build/Sofla.app
+          python3 scripts/runtime-smoke.py build/Sofla.app --require-os-major 26
+      - name: Verify signed installation and reject tampered updates
+        run: python3 scripts/test-updates.py
+      - name: Save update diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: signed-update-diagnostics
+          path: |
+            build/UpdateTests/*.log
+            build/UpdateTests/results.json
+          retention-days: 5
+          if-no-files-found: ignore
+      - name: Save compatibility diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: macos-26-runtime-diagnostics
+          path: build/runtime-smoke.*
+          retention-days: 5
+          if-no-files-found: ignore

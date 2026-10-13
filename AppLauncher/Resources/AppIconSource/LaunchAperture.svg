@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none">
+  <defs>
+    <linearGradient id="shell" x1="176" y1="116" x2="858" y2="912" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#70A8FF"/>
+      <stop offset="0.42" stop-color="#416FE0"/>
+      <stop offset="1" stop-color="#302B8D"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(732 224) rotate(132) scale(646)">
+      <stop stop-color="#C9E0FF" stop-opacity="0.72"/>
+      <stop offset="0.58" stop-color="#6D8EFF" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#312D91" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="tile" x1="250" y1="222" x2="732" y2="772" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.82"/>
+      <stop offset="1" stop-color="#D6E4FF" stop-opacity="0.46"/>
+    </linearGradient>
+    <linearGradient id="lifted" x1="640" y1="196" x2="778" y2="352" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#DCEAFF"/>
+    </linearGradient>
+    <filter id="shellShadow" x="24" y="22" width="976" height="994" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="28" stdDeviation="28" flood-color="#101632" flood-opacity="0.46"/>
+    </filter>
+    <filter id="tileShadow" x="590" y="150" width="254" height="258" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#18286D" flood-opacity="0.42"/>
+    </filter>
+  </defs>
+  <g filter="url(#shellShadow)">
+    <rect x="80" y="70" width="864" height="864" rx="194" fill="url(#shell)"/>
+    <rect x="80" y="70" width="864" height="864" rx="194" fill="url(#glow)"/>
+    <rect x="92" y="82" width="840" height="840" rx="182" stroke="#FFFFFF" stroke-opacity="0.26" stroke-width="12"/>
+    <path d="M188 188C268 108 384 92 512 92C640 92 756 108 836 188" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="18" stroke-linecap="round"/>
+  </g>
+  <g fill="url(#tile)" stroke="#FFFFFF" stroke-opacity="0.24" stroke-width="5">
+    <rect x="246" y="246" width="132" height="132" rx="36"/>
+    <rect x="446" y="246" width="132" height="132" rx="36"/>
+    <rect x="246" y="446" width="132" height="132" rx="36"/>
+    <rect x="446" y="446" width="132" height="132" rx="36"/>
+    <rect x="646" y="446" width="132" height="132" rx="36"/>
+    <rect x="246" y="646" width="132" height="132" rx="36"/>
+    <rect x="446" y="646" width="132" height="132" rx="36"/>
+    <rect x="646" y="646" width="132" height="132" rx="36"/>
+  </g>
+  <g filter="url(#tileShadow)">
+    <rect x="638" y="218" width="148" height="148" rx="42" fill="url(#lifted)"/>
+    <rect x="644" y="224" width="136" height="136" rx="36" stroke="#FFFFFF" stroke-opacity="0.72" stroke-width="6"/>
+  </g>
+</svg>

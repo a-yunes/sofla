@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+    <key>SUFeedURL</key><string>https://github.com/a-yunes/sofla/releases/latest/download/appcast.xml</string>
+    <key>SUPublicEDKey</key><string>Iz6taWz/4Kx97xNJSK9WeTh0kRWkcR7PJAbJyC1RvII=</string>
+    <key>SURequireSignedFeed</key><true/>
+    <key>SUVerifyUpdateBeforeExtraction</key><true/>
+    <key>SUSignedFeedFailureExpirationInterval</key><integer>0</integer>
+    <key>SUEnableSystemProfiling</key><false/>
+    <key>SUAutomaticallyUpdate</key><false/>
+    <key>SUScheduledCheckInterval</key><integer>86400</integer>
+    <key>SUShowReleaseNotes</key><false/>
+</dict></plist>

@@ -1,0 +1,24 @@
+name: Bug report
+description: Report an unexpected behavior in Sofla.
+body:
+  - type: markdown
+    attributes:
+      value: "Remove personal paths, app inventories, and private details from reports. For vulnerabilities, read SECURITY.md."
+  - type: input
+    id: version
+    attributes:
+      label: Sofla and macOS version
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What happened and what you expected
+    validations:
+      required: true

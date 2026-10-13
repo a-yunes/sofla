@@ -1,0 +1,23 @@
+.DS_Store
+.build/
+.swiftpm/
+build/
+DerivedData/
+*.xcresult
+*.profraw
+*.profdata
+xcuserdata/
+*.xcuserstate
+Configuration/Local.xcconfig
+*.p12
+*.p8
+*.mobileprovision
+*.provisionprofile
+.env
+.env.*
+.idea/
+# Local measurement and tool output
+__pycache__/
+*.pyc
+*.dmg
+*.zip
